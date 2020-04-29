@@ -27,6 +27,7 @@ class PostController
                    
                    AND `post_ingredient`.`post_id` = `post`.`id` AND `post_ingredient`.`ingredient_id` = `ingredient`.`id`
                    AND `post_assignment`.`post_id` = `post`.`id` AND `post_assignment`.`assignment_id` = `assignment`.`id` 
+                    
                    ".$this->request->get_filter_query_statement()."
                    ".$this->request->get_last_post_id_condition()."
                    ".$this->request->get_title_regexp_condition()."
@@ -35,7 +36,7 @@ class PostController
                      `post`.`pubtime` DESC
                      ".$this->request->get_locale_ordering_condition()." 
                     LIMIT ".POST_BANDWIDTH);
-
+        
         $st = $this->db->prepare($query);
         $st->execute();
         return $st;

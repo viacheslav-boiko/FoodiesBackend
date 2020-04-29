@@ -42,7 +42,7 @@ class Request
     public function get_last_post_id_condition()
     {
         return $this->last_post_id != null
-            ? "AND `post`.`id` > ".$this->last_post_id.""
+            ? "AND `post`.`id` < ".$this->last_post_id.""
             : "";
     }
 
