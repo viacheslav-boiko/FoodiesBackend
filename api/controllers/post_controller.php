@@ -33,10 +33,8 @@ class PostController
                    ".$this->request->get_title_regexp_condition()."
                    GROUP BY `post`.`id`
                    ORDER BY 
-                     `post`.`pubtime` DESC
-                     ".$this->request->get_locale_ordering_condition()." 
-                    LIMIT ".POST_BANDWIDTH);
-        
+                     `post`.`pubtime` DESC LIMIT ".POST_BANDWIDTH);
+        //".$this->request->get_locale_ordering_condition()."
         $st = $this->db->prepare($query);
         $st->execute();
         return $st;

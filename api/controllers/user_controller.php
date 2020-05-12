@@ -28,7 +28,8 @@ class UserController
                        SET name = \"$name\",
                            picture = \"$picture\",
                            locale = '$locale',
-                           email = '$email'";
+                           email = '$email',
+                           signed = '1'";
 
         $st = $this->db->prepare($query);
 
@@ -40,6 +41,13 @@ class UserController
     public function get_user_id_by_email($user) {
         $query = "SELECT id FROM foodies_db.user WHERE name = \"".$user->getName()."\"
                     AND email = \"".$user->getEmail()."\" AND locale = \"".$user->getLocale()."\"";
+        $st = $this->db->prepare($query);
+        $st->execute();
+        return $st;
+    }
+
+    public function update_user_auth_status($user) {
+        $query = "UPDATE foodies_db.user SET `signed` = ".$user->getSignedIn()." WHERE `id` = ".$user->getId();
         $st = $this->db->prepare($query);
         $st->execute();
         return $st;

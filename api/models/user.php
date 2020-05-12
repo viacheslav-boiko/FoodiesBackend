@@ -8,6 +8,7 @@ class User
     private $picture;
     private $locale;
     private $email;
+    private $signedIn;
 
     # GETTERS & SETTERS
 
@@ -25,4 +26,7 @@ class User
 
     public function getEmail(){return $this->email;}
     public function setEmail($email){$this->email = $email;}
+
+    public function getSignedIn(){return $this->signedIn;}
+    public function setSignedIn($signedIn){$this->signedIn = $signedIn;}
 }
