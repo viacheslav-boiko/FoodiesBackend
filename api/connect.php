@@ -14,13 +14,13 @@ class Connectivity
             $con = new PDO('mysql:host='.self::$host.';dbname'.self::$db,
                 self::$username,
                 self::$password);
-            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $con->setAttribute(PDO::ATTR_TIMEOUT, 5);
+            $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e)
         {
-            echo "Connection to the database failed. Error: $e->errorInfo";
-            die();
+            echo json_encode(ErrorCodes::db_mysql_exception($e->getMessage()));
         }
 
         return $con;

@@ -1,8 +1,16 @@
 <?php
+require_once '../vendor/autoload.php';
+
 define("USERS_ROOT", dirname(dirname(__DIR__)).'\\users');
 
 class Utils
 {
+    public static function verify_google_token($token) {
+        $client_id = "55827698592-8qj8mci54h1k0jboe3nlc1b6bsl2rl9d.apps.googleusercontent.com";
+        $client = new Google_Client(['client_id' => $client_id]);
+        return $client->verifyIdToken($token);
+    }
+
     public static function create_dir($email){
         $path = USERS_ROOT.'/'.$email;
         if(!file_exists($path))
