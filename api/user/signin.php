@@ -30,8 +30,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user->setPicture($payload["picture"]);
                 $user->setLocale($payload["locale"]);
                 $user->setEmail($payload["email"]);
-                $user->setSignedIn(true);
-
                 $user_controller = new UserController($db);
 
                 try {
@@ -43,8 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         $last_user_id_arr = array('id' => $last_user_id);
                         echo json_encode($last_user_id_arr += $payload += ErrorCodes::no_error());
                     } else {
-                        $user->setId($user_id['id']);
-                        $user_controller->update_user_auth_status($user);
+                        $user_controller->update_user_sign_in_time($user_id['id']);
                         echo json_encode($user_id += $payload += ErrorCodes::no_error());
                     }
 

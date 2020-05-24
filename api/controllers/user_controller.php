@@ -29,7 +29,7 @@ class UserController
                            picture = \"$picture\",
                            locale = '$locale',
                            email = '$email',
-                           signed = '1'";
+                           last_signed_time = \"".date('Y-m-d H:i:s')."\"";
 
         $st = $this->db->prepare($query);
 
@@ -46,11 +46,10 @@ class UserController
         return $st;
     }
 
-    public function update_user_auth_status($user) {
-        $query = "UPDATE foodies_db.user SET `signed` = ".$user->getSignedIn()." WHERE `id` = ".$user->getId();
+    public function update_user_sign_in_time($user_id) {
+        $query = "UPDATE foodies_db.user SET last_signed_time = \"".date('Y-m-d H:i:s')."\" WHERE id = ".$user_id;
         $st = $this->db->prepare($query);
         $st->execute();
-        return $st;
     }
 
     public function delete($user)
