@@ -22,7 +22,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: GET");
 
-if($_SERVER["REQUEST_METHOD"] == "GET") {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $db = Connectivity::Connect();
 
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
                 $post->setId($row['id']);
                 $post->setTitle($row['title']);
                 $post->setCooktime($row['cooktime']);
-                $post->setImg($row['image']);
+                $post->setImg(Utils::get_image_path($row['image']));
                 $post->setDescription($row['description']);
                 $post->setPubtime($row['pubtime']);
                 $post->setShares($row['shares']);

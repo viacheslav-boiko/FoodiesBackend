@@ -91,4 +91,9 @@ class PostController
         $st->execute();
         return $st;
     }
+
+
+    public function create_post($post) {
+
+    }
 }

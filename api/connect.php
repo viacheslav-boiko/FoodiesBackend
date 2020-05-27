@@ -25,4 +25,8 @@ class Connectivity
 
         return $con;
     }
+
+    public static function getHost() {
+        return self::$host;
+    }
 }

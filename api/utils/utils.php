@@ -2,6 +2,8 @@
 require_once '../vendor/autoload.php';
 
 define("USERS_ROOT", dirname(dirname(__DIR__)).'\\users');
+define("HTTP", "http://");
+define("USERS", "users");
 
 class Utils
 {
@@ -41,6 +43,10 @@ class Utils
             }
             rmdir($target);
         }
+    }
+
+    public static function get_image_path($db_image_path) {
+        return HTTP.Connectivity::getHost().'/'.USERS.'/'.$db_image_path;
     }
 
     public static function load_image($path, $img_encoded, $img_name){
